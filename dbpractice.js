@@ -8,16 +8,14 @@ const client = new Client({
     port: 5432,
 })
 client.connect()
-
+todoout = [];
 
 
 client.query('SELECT * FROM todos', (err, res) => {
   if (err) {
     console.log(err.stack)
   } else {
-    todoout = {items:[]};
-    for(let row of res.rows)
-    todoout.items.push(row);
+    todoout.push(res.rows);
     exports.todoout = todoout;
   }
 })
